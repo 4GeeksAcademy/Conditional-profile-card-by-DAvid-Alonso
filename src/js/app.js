@@ -30,17 +30,39 @@ function render(variables = {}) {
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
 
   // reset the website body with the new html output
+  let positionRsss =
+    variables.socialMediaPosition === "position-left"
+      ? "position-left"
+      : "position-right";
+  let name = variables.name || "Nombre";
+  let lastName = variables.lastName || "Apellidos";
+  let role = variables.role || "Puesto";
+  let city = variables.city || "Ciudad";
+  let country = variables.country || "País";
+  let twitter = variables.twitter
+    ? `<li><a href="https://twitter.com/${variables.twitter}"><i class="fab fa-twitter"></i></a></li>`
+    : "";
+  let github = variables.github
+    ? `<li><a href="https://github.com/${variables.github}"><i class="fab fa-github"></i></a></li>`
+    : "";
+  let linkedin = variables.linkedin
+    ? `<li><a href="https://linkedin.com/${variables.linkedin}"><i class="fab fa-linkedin"></i></a></li>`
+    : "";
+  let instagram = variables.instagram
+    ? `<li><a href="https://instagram.com/${variables.instagram}"><i class="fab fa-instagram"></i></a></li>`
+    : "";
+
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>Lucy Boilett</h1>
-          <h2>Web Developer</h2>
-          <h3>Miami, USA</h3>
-          <ul class="position-right">
-            <li><a href="https://twitter.com/4geeksacademy"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="https://github.com/4geeksacademy"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/school/4geeksacademy"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/4geeksacademy"><i class="fab fa-instagram"></i></a></li>
+          <h1>${name} ${lastName}</h1>
+          <h2>${role}</h2>
+          <h3>${city}, ${country}</h3>
+          <ul class="${positionRsss}">
+            <li><a href="https://twitter.com/4geeksacademy">${twitter}<i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://github.com/4geeksacademy">${github}<i class="fab fa-github"></i></a></li>
+            <li><a href="https://linkedin.com/school/4geeksacademy">${linkedin}<i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://instagram.com/4geeksacademy">${instagram}<i class="fab fa-instagram"></i></a></li>
           </ul>
         </div>
     `;
@@ -56,7 +78,7 @@ window.onload = function() {
     // this is the image's url that will be used as a background for the profile cover
     background: "https://images.unsplash.com/photo-1511974035430-5de47d3b95da",
     // this is the url for the profile avatar
-    avatarURL: "https://randomuser.me/api/portraits/women/42.jpg",
+    avatarURL: "src/content/frodo.webp",
     // social media bar position (left or right)
     socialMediaPosition: "position-left",
     // social media usernames
